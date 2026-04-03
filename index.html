@@ -379,6 +379,27 @@
       gap: 20px;
       z-index: 100;
     }
+    .nav-btn {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--color-border);
+      color: var(--color-text-muted);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: none; /* nascosti su desktop */
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+    .nav-btn:hover {
+      background: var(--color-accent);
+      border-color: var(--color-accent);
+      color: #000;
+      box-shadow: 0 0 16px var(--color-accent-glow);
+      transform: scale(1.1);
+    }
     .slide-counter {
       font-size: 13px;
       font-weight: 600;
@@ -460,12 +481,15 @@
       }
 
       .slide-content {
-        padding: 24px 24px 72px;
+        padding: 28px 24px 72px;
         height: 100vh;
-        justify-content: flex-start;
+        justify-content: flex-start; /* parte alta sempre visibile */
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
       }
+
+      /* frecce visibili su mobile */
+      .nav-btn { display: flex; }
 
       h1 { font-size: clamp(28px, 7vw, 44px); }
       h2 { font-size: clamp(22px, 6vw, 36px); }
@@ -1031,7 +1055,9 @@
 </div>
 
 <nav class="nav-bar">
+  <button class="nav-btn" onclick="goTo(cur - 1)" aria-label="Precedente">◀</button>
   <span class="slide-counter">1 / 8</span>
+  <button class="nav-btn" onclick="goTo(cur + 1)" aria-label="Successiva">▶</button>
 </nav>
 
 <script>
