@@ -46,11 +46,12 @@
     .slide-content {
       width: 100%;
       max-width: 1400px;
-      padding: 52px 88px 96px;
+      padding: 48px 80px 80px;
       height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      overflow-y: auto;
     }
 
     /* ── DECORATIVI ── */
@@ -420,6 +421,122 @@
     .gap-12 { gap: 12px; }
     .gap-16 { gap: 16px; }
     .gap-24 { gap: 24px; }
+
+    /* ── RESPONSIVE: schermi piccoli desktop / laptop ── */
+    @media (max-height: 800px) {
+      .slide-content { padding: 36px 72px 72px; }
+      h1 { font-size: clamp(36px, 4.5vw, 60px); }
+      h2 { font-size: clamp(26px, 3vw, 42px); }
+      .grid-2 { gap: 32px !important; }
+      .grid-3 { gap: 14px !important; }
+      .card { padding: 20px; }
+      .icon-wrapper { width: 40px; height: 40px; font-size: 18px; margin-bottom: 10px; }
+      .service-item { padding: 10px 16px; }
+      .del-item { padding: 8px 0; }
+      .price-box { padding: 28px; }
+      .price-number { font-size: clamp(44px, 5.5vw, 72px); }
+      .cta-box { padding: 12px 18px; }
+      .bullet-list { gap: 6px !important; }
+      .bullet-list li { font-size: 13px; }
+      .mt-32 { margin-top: 20px; }
+      .mt-40 { margin-top: 24px; }
+      .mt-24 { margin-top: 14px; }
+      .mt-20 { margin-top: 12px; }
+    }
+
+    /* ── RESPONSIVE: tablet landscape ── */
+    @media (max-width: 1024px) {
+      .slide-content { padding: 40px 48px 72px; }
+      .grid-3 { grid-template-columns: repeat(2, 1fr) !important; gap: 16px !important; }
+    }
+
+    /* ── RESPONSIVE: mobile ── */
+    @media (max-width: 768px) {
+      body { overflow: hidden; }
+
+      .slide {
+        position: fixed;
+        overflow: hidden;
+      }
+
+      .slide-content {
+        padding: 24px 24px 72px;
+        height: 100vh;
+        justify-content: flex-start;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      h1 { font-size: clamp(28px, 7vw, 44px); }
+      h2 { font-size: clamp(22px, 6vw, 36px); }
+      h3 { font-size: clamp(16px, 4.5vw, 22px); }
+      p  { font-size: 14px; }
+
+      /* grids → colonna singola su mobile */
+      .grid-2, .grid-3, .grid-4 {
+        grid-template-columns: 1fr !important;
+        gap: 14px !important;
+      }
+
+      /* gap inline override */
+      [style*="gap: 56px"], [style*="gap: 64px"] { gap: 20px !important; }
+      [style*="gap: 48px"] { gap: 16px !important; }
+
+      .card { padding: 18px; }
+      .icon-wrapper { width: 38px; height: 38px; font-size: 16px; margin-bottom: 10px; }
+      .service-item { padding: 10px 14px; }
+      .del-item { font-size: 13px; padding: 8px 0; }
+      .del-check { width: 22px; height: 22px; font-size: 10px; }
+
+      .price-box { padding: 24px; }
+      .price-number { font-size: clamp(44px, 12vw, 64px); }
+
+      .cta-box { padding: 12px 14px; }
+      .cta-box p { font-size: 13px; }
+
+      .highlight-box { padding: 14px 18px; }
+
+      .vs-box { padding: 18px; }
+      .vs-item { font-size: 13px; }
+
+      .pill { font-size: 11px; padding: 5px 12px; }
+
+      /* logo più piccolo */
+      .logo img { height: 32px; }
+      .logo-text { font-size: 22px; }
+
+      /* tag più compatto */
+      .tag { font-size: 11px; padding: 4px 14px; margin-bottom: 12px; }
+      .fase-badge { font-size: 10px; padding: 5px 12px; margin-bottom: 14px; }
+
+      /* nav bar */
+      .nav-bar { height: 52px; }
+      .progress-track { bottom: 52px; }
+
+      /* nasconde decorativi pesanti su mobile */
+      .deco-glow { display: none; }
+
+      /* margini ridotti */
+      .mt-32 { margin-top: 16px; }
+      .mt-40 { margin-top: 20px; }
+      .mt-24 { margin-top: 12px; }
+      .mt-20 { margin-top: 10px; }
+      .mt-16 { margin-top: 8px; }
+
+      /* bullet list */
+      .bullet-list li { font-size: 13px; }
+      .bullet-list { gap: 6px !important; }
+
+      /* pills hero */
+      .flex.gap-16 { flex-wrap: wrap; gap: 8px !important; }
+    }
+
+    /* ── RESPONSIVE: mobile piccolo ── */
+    @media (max-width: 480px) {
+      .slide-content { padding: 20px 18px 64px; }
+      h1 { font-size: clamp(24px, 8vw, 36px); }
+      h2 { font-size: clamp(20px, 7vw, 30px); }
+    }
 
   </style>
 </head>
@@ -926,6 +1043,9 @@
     slides[cur].classList.remove('active');
     cur = (n + total) % total;
     slides[cur].classList.add('active');
+    // Scroll al top del contenuto nella nuova slide
+    const content = slides[cur].querySelector('.slide-content');
+    if (content) content.scrollTop = 0;
     document.querySelector('.slide-counter').textContent = `${cur + 1} / ${total}`;
     document.querySelector('.progress-bar').style.width = `${((cur + 1) / total) * 100}%`;
   }
@@ -935,13 +1055,21 @@
     if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   goTo(cur - 1);
   });
 
-  // Touch / swipe
+  // Touch / swipe — distingue scroll verticale (contenuto) da swipe orizzontale (slide)
   let touchStartX = 0;
-  document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+  let touchStartY = 0;
+  document.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
   document.addEventListener('touchend', e => {
     const dx = e.changedTouches[0].clientX - touchStartX;
-    if (Math.abs(dx) > 50) goTo(dx < 0 ? cur + 1 : cur - 1);
-  });
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    // Solo swipe orizzontale predominante
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) {
+      goTo(dx < 0 ? cur + 1 : cur - 1);
+    }
+  }, { passive: true });
 
   slides[0].classList.add('active');
 </script>
