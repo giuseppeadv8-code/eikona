@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Proposta Eikona — Strategia Fiera + Sistema TAC AI</title>
+  <title>Proposta Operativa — Strategia Fiera + Sistema TAC AI × Eikona</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
@@ -17,12 +17,6 @@
       --color-text:        #FFFFFF;
       --color-text-muted:  rgba(255,255,255,0.6);
       --color-border:      rgba(255,255,255,0.08);
-
-      --font-h1:   clamp(48px, 5vw, 80px);
-      --font-h2:   clamp(36px, 4vw, 56px);
-      --font-h3:   clamp(22px, 2.5vw, 36px);
-      --font-body: clamp(16px, 1.5vw, 22px);
-      --font-stat: clamp(48px, 6vw, 80px);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -34,7 +28,7 @@
       overflow: hidden;
     }
 
-    /* ── SLIDE BASE ── */
+    /* ── SLIDE ── */
     .slide {
       position: fixed;
       inset: 0;
@@ -52,56 +46,90 @@
     .slide-content {
       width: 100%;
       max-width: 1400px;
-      padding: 48px 80px 100px; /* bottom clearance for nav bar */
+      padding: 52px 88px 96px;
       height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      overflow: hidden;
+    }
+
+    /* ── DECORATIVI ── */
+    .deco-glow {
+      position: absolute;
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(252,136,42,0.14) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .deco-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
+      background-size: 80px 80px;
+      pointer-events: none;
     }
 
     /* ── LOGO ── */
-    .logo img { height: 48px; object-fit: contain; }
-    .logo-text {
-      font-size: 32px;
-      font-weight: 900;
-      color: var(--color-accent);
-      letter-spacing: -0.02em;
-    }
+    .logo img { height: 44px; object-fit: contain; }
+    .logo-text { font-size: 30px; font-weight: 900; color: var(--color-accent); letter-spacing: -0.02em; }
 
     /* ── TIPOGRAFIA ── */
     h1 {
-      font-size: var(--font-h1);
+      font-size: clamp(44px, 5.5vw, 76px);
       font-weight: 800;
       color: var(--color-accent);
       line-height: 1.05;
       letter-spacing: -0.02em;
     }
     h2 {
-      font-size: var(--font-h2);
+      font-size: clamp(32px, 3.8vw, 52px);
       font-weight: 700;
       color: var(--color-accent);
       line-height: 1.1;
       letter-spacing: -0.01em;
     }
     h3 {
-      font-size: var(--font-h3);
+      font-size: clamp(18px, 2vw, 26px);
       font-weight: 600;
       color: var(--color-text);
       line-height: 1.2;
     }
-    p { font-size: var(--font-body); line-height: 1.6; color: var(--color-text-muted); }
+    p {
+      font-size: clamp(15px, 1.4vw, 20px);
+      line-height: 1.65;
+      color: var(--color-text-muted);
+    }
 
+    /* ── TAG / BADGE ── */
     .tag {
       display: inline-block;
       background: var(--color-accent-dim);
       color: var(--color-accent);
       border: 1px solid rgba(252,136,42,0.3);
       border-radius: 999px;
-      padding: 6px 20px;
-      font-size: 14px;
+      padding: 5px 18px;
+      font-size: 13px;
       font-weight: 600;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .fase-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--color-accent-dim);
+      border: 1px solid rgba(252,136,42,0.25);
+      border-radius: 8px;
+      padding: 7px 16px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--color-accent);
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       margin-bottom: 24px;
     }
@@ -111,7 +139,7 @@
       background: var(--color-surface);
       border: 1px solid var(--color-border);
       border-radius: 12px;
-      padding: 32px;
+      padding: 28px;
       transition: all 0.3s ease;
       cursor: default;
     }
@@ -124,16 +152,17 @@
 
     /* ── ICON WRAPPER ── */
     .icon-wrapper {
-      width: 56px;
-      height: 56px;
+      width: 52px;
+      height: 52px;
       border-radius: 14px;
       background: var(--color-accent-dim);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
-      margin-bottom: 20px;
+      font-size: 22px;
+      margin-bottom: 16px;
       transition: all 0.3s ease;
+      flex-shrink: 0;
     }
     .card:hover .icon-wrapper {
       background: var(--color-accent);
@@ -141,49 +170,174 @@
       box-shadow: 0 0 20px var(--color-accent-glow);
     }
 
-    /* ── BUTTON PRIMARY ── */
-    .btn-primary {
-      background: var(--color-accent);
-      color: #000000;
-      padding: 18px 48px;
-      border: none;
-      border-radius: 8px;
-      font-size: 18px;
-      font-weight: 700;
-      cursor: pointer;
+    /* ── SERVICE ITEM ── */
+    .service-item {
+      padding: 14px 20px;
+      border-left: 3px solid transparent;
       transition: all 0.3s ease;
-      letter-spacing: 0.02em;
-      display: inline-block;
+      border-radius: 0 8px 8px 0;
+      cursor: default;
     }
-    .btn-primary:hover {
-      background: #FF9940;
-      transform: scale(1.04);
-      box-shadow: 0 0 30px var(--color-accent-glow);
+    .service-item:hover {
+      border-left-color: var(--color-accent);
+      background: var(--color-accent-dim);
+      padding-left: 28px;
     }
 
-    /* ── BUTTON OUTLINE ── */
-    .btn-outline {
-      background: transparent;
-      color: var(--color-text);
-      padding: 18px 48px;
-      border: 2px solid rgba(255,255,255,0.3);
-      border-radius: 8px;
-      font-size: 18px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: inline-block;
+    /* ── BULLET LIST ── */
+    .bullet-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
-    .btn-outline:hover {
-      border-color: var(--color-accent);
-      color: var(--color-accent);
+    .bullet-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: clamp(14px, 1.3vw, 18px);
+      color: var(--color-text);
+      line-height: 1.5;
+    }
+    .bullet-list li::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--color-accent);
+      flex-shrink: 0;
+      margin-top: 7px;
+    }
+    .bullet-list.muted li { color: var(--color-text-muted); }
+
+    /* ── CTA BOX ── */
+    .cta-box {
       background: var(--color-accent-dim);
-      box-shadow: 0 0 16px var(--color-accent-glow);
+      border: 1px solid rgba(252,136,42,0.25);
+      border-radius: 10px;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .cta-box .arrow { font-size: 20px; flex-shrink: 0; }
+    .cta-box p { font-size: clamp(14px, 1.3vw, 17px); color: var(--color-text); }
+
+    /* ── HIGHLIGHT BOX ── */
+    .highlight-box {
+      background: var(--color-accent-dim);
+      border: 1px solid rgba(252,136,42,0.25);
+      border-radius: 10px;
+      padding: 18px 24px;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 48px;
+      height: 3px;
+      background: var(--color-accent);
+      border-radius: 2px;
+      margin: 18px 0;
+    }
+
+    /* ── DELIVERABLE ITEM ── */
+    .del-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--color-border);
+      font-size: clamp(14px, 1.3vw, 17px);
+      color: var(--color-text);
+      transition: all 0.25s ease;
+    }
+    .del-item:last-child { border-bottom: none; }
+    .del-item:hover { color: var(--color-accent); padding-left: 6px; }
+    .del-check {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--color-accent-dim);
+      border: 1px solid rgba(252,136,42,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      flex-shrink: 0;
+      color: var(--color-accent);
+    }
+
+    /* ── VS BOX ── */
+    .vs-box {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: 28px;
+    }
+    .vs-box.bad  { border-color: rgba(255,80,80,0.2); background: rgba(255,80,80,0.04); }
+    .vs-box.good { border-color: rgba(252,136,42,0.3); background: var(--color-accent-dim); }
+    .vs-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .vs-label.bad  { color: rgba(255,80,80,0.7); }
+    .vs-label.good { color: var(--color-accent); }
+    .vs-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 0;
+      font-size: clamp(13px, 1.2vw, 16px);
+      color: var(--color-text-muted);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .vs-item:last-child { border-bottom: none; }
+
+    /* ── PRICE ── */
+    .price-number {
+      font-size: clamp(56px, 7vw, 96px);
+      font-weight: 900;
+      color: var(--color-accent);
+      line-height: 1;
+    }
+    .price-box {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+      padding: 40px;
+      transition: all 0.3s ease;
+    }
+    .price-box:hover {
+      border-color: var(--color-accent);
+      box-shadow: 0 0 40px var(--color-accent-glow), 0 20px 60px rgba(0,0,0,0.5);
+    }
+
+    /* ── PILL ── */
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 999px;
+      padding: 7px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--color-text-muted);
+    }
+    .pill .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--color-accent);
     }
 
     /* ── STAT ── */
     .stat-number {
-      font-size: var(--font-stat);
+      font-size: clamp(44px, 5.5vw, 76px);
       font-weight: 900;
       color: var(--color-accent);
       display: block;
@@ -196,26 +350,17 @@
       text-shadow: 0 0 30px var(--color-accent-glow);
     }
     .stat-label {
-      font-size: 15px;
+      font-size: 14px;
       color: var(--color-text-muted);
-      margin-top: 10px;
+      margin-top: 8px;
       font-weight: 500;
       line-height: 1.4;
     }
 
-    /* ── SERVICE ITEM ── */
-    .service-item {
-      padding: 20px 24px;
-      border-left: 3px solid transparent;
-      transition: all 0.3s ease;
-      border-radius: 0 8px 8px 0;
-      cursor: default;
-    }
-    .service-item:hover {
-      border-left-color: var(--color-accent);
-      background: var(--color-accent-dim);
-      padding-left: 32px;
-    }
+    /* ── GRIDS ── */
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
 
     /* ── NAV BAR ── */
     .nav-bar {
@@ -223,39 +368,18 @@
       bottom: 0;
       left: 0;
       right: 0;
-      height: 72px;
-      background: rgba(0,0,0,0.85);
+      height: 64px;
+      background: rgba(0,0,0,0.9);
       backdrop-filter: blur(12px);
       border-top: 1px solid var(--color-border);
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 24px;
+      gap: 20px;
       z-index: 100;
     }
-    .nav-btn {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid var(--color-border);
-      color: var(--color-text-muted);
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-    }
-    .nav-btn:hover {
-      background: var(--color-accent);
-      border-color: var(--color-accent);
-      color: #000000;
-      box-shadow: 0 0 16px var(--color-accent-glow);
-      transform: scale(1.1);
-    }
     .slide-counter {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 600;
       color: var(--color-text-muted);
       min-width: 48px;
@@ -263,7 +387,7 @@
     }
     .progress-track {
       position: fixed;
-      bottom: 72px;
+      bottom: 64px;
       left: 0;
       right: 0;
       height: 3px;
@@ -277,244 +401,25 @@
       box-shadow: 0 0 8px var(--color-accent-glow);
     }
 
-    /* ── DECORATIVE ── */
-    .deco-glow {
-      position: absolute;
-      width: 600px;
-      height: 600px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(252,136,42,0.18) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .deco-grid {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-      background-size: 80px 80px;
-      pointer-events: none;
-    }
-
-    /* ── GRID LAYOUTS ── */
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-    .grid-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
-
-    /* ── FASE BADGE ── */
-    .fase-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--color-accent-dim);
-      border: 1px solid rgba(252,136,42,0.25);
-      border-radius: 8px;
-      padding: 8px 18px;
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--color-accent);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 32px;
-    }
-
-    /* ── STEP NUMBER ── */
-    .step-num {
-      font-size: 56px;
-      font-weight: 900;
-      color: var(--color-accent);
-      opacity: 0.15;
-      line-height: 1;
-      font-variant-numeric: tabular-nums;
-    }
-
-    /* ── DIVIDER ── */
-    .divider {
-      width: 60px;
-      height: 4px;
-      background: var(--color-accent);
-      border-radius: 2px;
-      margin: 24px 0;
-    }
-
-    /* ── HIGHLIGHT BOX ── */
-    .highlight-box {
-      background: var(--color-accent-dim);
-      border: 1px solid rgba(252,136,42,0.25);
-      border-radius: 12px;
-      padding: 24px 32px;
-    }
-
-    /* ── PILL ── */
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      border-radius: 999px;
-      padding: 8px 18px;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--color-text-muted);
-    }
-    .pill .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--color-accent);
-    }
-
-    /* ── PRICE BOX ── */
-    .price-box {
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      border-radius: 16px;
-      padding: 48px;
-      transition: all 0.3s ease;
-    }
-    .price-box:hover {
-      border-color: var(--color-accent);
-      box-shadow: 0 0 40px var(--color-accent-glow), 0 20px 60px rgba(0,0,0,0.5);
-    }
-    .price-number {
-      font-size: clamp(56px, 7vw, 96px);
-      font-weight: 900;
-      color: var(--color-accent);
-      line-height: 1;
-    }
-
-    /* ── DELIVERABLE LIST ── */
-    .del-item {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 14px 0;
-      border-bottom: 1px solid var(--color-border);
-      font-size: 17px;
-      color: var(--color-text);
-      transition: all 0.25s ease;
-    }
-    .del-item:last-child { border-bottom: none; }
-    .del-item:hover { color: var(--color-accent); padding-left: 8px; }
-    .del-item .check {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: var(--color-accent-dim);
-      border: 1px solid rgba(252,136,42,0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      flex-shrink: 0;
-      color: var(--color-accent);
-    }
-
-    /* ── TIMELINE HORIZONTAL ── */
-    .timeline {
-      display: flex;
-      align-items: flex-start;
-      gap: 0;
-      position: relative;
-    }
-    .timeline::before {
-      content: '';
-      position: absolute;
-      top: 28px;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--color-accent), rgba(252,136,42,0.2));
-    }
-    .timeline-step {
-      flex: 1;
-      position: relative;
-      padding-top: 60px;
-      padding-right: 16px;
-      cursor: default;
-    }
-    .timeline-dot {
-      position: absolute;
-      top: 20px;
-      left: 0;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: var(--color-accent);
-      box-shadow: 0 0 12px var(--color-accent-glow);
-      transition: all 0.3s ease;
-    }
-    .timeline-step:hover .timeline-dot {
-      transform: scale(1.4);
-      box-shadow: 0 0 20px var(--color-accent-glow);
-    }
-    .timeline-step-title {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--color-accent);
-      margin-bottom: 8px;
-    }
-    .timeline-step-text {
-      font-size: 14px;
-      color: var(--color-text-muted);
-      line-height: 1.5;
-    }
-
-    /* ── VS BOX ── */
-    .vs-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 24px; align-items: center; }
-    .vs-box {
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      border-radius: 12px;
-      padding: 32px;
-    }
-    .vs-box.bad { border-color: rgba(255,80,80,0.2); background: rgba(255,80,80,0.04); }
-    .vs-box.good { border-color: rgba(252,136,42,0.3); background: var(--color-accent-dim); }
-    .vs-label {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-    .vs-label.bad { color: rgba(255,80,80,0.7); }
-    .vs-label.good { color: var(--color-accent); }
-    .vs-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 10px 0;
-      font-size: 16px;
-      color: var(--color-text-muted);
-      border-bottom: 1px solid rgba(255,255,255,0.04);
-    }
-    .vs-item:last-child { border-bottom: none; }
-    .vs-item .icon { font-size: 16px; }
-    .vs-sep { font-size: 24px; font-weight: 900; color: var(--color-text-muted); text-align: center; }
-
-    /* UTILITY */
+    /* ── UTILITY ── */
+    .text-accent  { color: var(--color-accent); }
+    .text-muted   { color: var(--color-text-muted); }
+    .font-bold    { font-weight: 700; }
     .mt-8  { margin-top: 8px; }
+    .mt-12 { margin-top: 12px; }
     .mt-16 { margin-top: 16px; }
+    .mt-20 { margin-top: 20px; }
     .mt-24 { margin-top: 24px; }
     .mt-32 { margin-top: 32px; }
-    .mt-48 { margin-top: 48px; }
+    .mt-40 { margin-top: 40px; }
     .mb-8  { margin-bottom: 8px; }
     .mb-16 { margin-bottom: 16px; }
     .mb-24 { margin-bottom: 24px; }
-    .mb-32 { margin-bottom: 32px; }
-    .flex { display: flex; }
-    .flex-col { flex-direction: column; }
+    .flex  { display: flex; }
     .items-center { align-items: center; }
+    .gap-12 { gap: 12px; }
     .gap-16 { gap: 16px; }
     .gap-24 { gap: 24px; }
-    .gap-32 { gap: 32px; }
-    .gap-48 { gap: 48px; }
-    .text-muted { color: var(--color-text-muted); }
-    .text-accent { color: var(--color-accent); }
-    .font-bold { font-weight: 700; }
-    .text-sm { font-size: 15px; }
-    .text-xs { font-size: 13px; }
 
   </style>
 </head>
@@ -526,125 +431,142 @@
 <section class="slide" id="slide-1">
   <div class="deco-grid"></div>
   <div class="deco-glow" style="bottom: -200px; right: -100px;"></div>
-  <div class="deco-glow" style="top: -200px; left: -100px; opacity: 0.5;"></div>
+  <div class="deco-glow" style="top: -250px; left: -150px; opacity: 0.5;"></div>
 
-  <div class="slide-content" style="justify-content:space-between;">
+  <div class="slide-content" style="justify-content: space-between;">
 
-    <!-- Logo -->
     <div class="logo">
       <img src="logo.png" alt="TAC Agency" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
       <span class="logo-text" style="display:none;">TAC</span>
     </div>
 
-    <!-- Centro -->
-    <div style="max-width: 900px;">
+    <div style="max-width: 860px;">
       <div class="tag">Proposta Operativa — Eikona</div>
-      <h1 style="margin-bottom: 24px;">Strategia Fiera<br>+ Sistema TAC AI</h1>
-      <p style="font-size: clamp(18px, 2vw, 24px); max-width: 700px; color: var(--color-text-muted);">
-        Non solo partecipare alla fiera.<br>
-        Costruire un sistema che genera risultati commerciali concreti — prima, durante e dopo.
+      <h1 style="margin-bottom: 20px;">
+        Strategia Fiera<br>+ Sistema TAC AI
+      </h1>
+      <p style="font-size: clamp(17px, 1.8vw, 22px); max-width: 680px; color: var(--color-text-muted); line-height: 1.6;">
+        L'obiettivo non è partecipare alla fiera,<br>
+        ma costruire un sistema che genera risultati commerciali concreti.
       </p>
-
-      <div class="flex gap-16 mt-48">
+      <div class="flex gap-16 mt-32">
         <div class="pill"><span class="dot"></span> Pre-Fiera</div>
-        <div class="pill"><span class="dot"></span> Fiera</div>
+        <div class="pill"><span class="dot"></span> In Fiera</div>
         <div class="pill"><span class="dot"></span> Post-Fiera</div>
         <div class="pill"><span class="dot"></span> Sistema TAC AI</div>
       </div>
     </div>
 
-    <!-- Bottom -->
     <div style="display:flex; justify-content:space-between; align-items:flex-end;">
-      <p class="text-xs text-muted">Riservato — TAC Agency × Eikona · Marzo 2026</p>
-      <p class="text-xs text-muted">Proposta commerciale</p>
+      <p style="font-size:12px; color:var(--color-text-muted);">Riservato — TAC Agency × Eikona · 2026</p>
+      <p style="font-size:12px; color:var(--color-text-muted);">Proposta commerciale</p>
     </div>
 
   </div>
 </section>
 
 <!-- ═══════════════════════════════════════════════ -->
-<!-- SLIDE 2 — IL PROBLEMA -->
+<!-- SLIDE 2 — STRATEGIA -->
 <!-- ═══════════════════════════════════════════════ -->
 <section class="slide" id="slide-2">
   <div class="deco-grid"></div>
   <div class="deco-glow" style="top: -150px; right: -150px; opacity: 0.4;"></div>
 
   <div class="slide-content">
-    <div class="tag">La Situazione Attuale</div>
-    <h2 style="max-width: 700px; margin-bottom: 16px;">La Fiera Non Porta<br>Risultati da Sola</h2>
-    <p style="margin-bottom: 48px; max-width: 600px;">Senza un sistema strutturato, partecipare a una fiera significa sprecare risorse, tempo e opportunità.</p>
+    <div class="tag">Strategia</div>
+    <h2 style="margin-bottom: 12px;">L'Obiettivo</h2>
+    <p style="margin-bottom: 32px; max-width: 680px;">
+      Non partecipare alla fiera, ma costruire un sistema che permetta di:
+    </p>
 
-    <div class="grid-3" style="gap: 28px;">
+    <div class="grid-2" style="gap: 28px; align-items: start;">
+      <div>
+        <ul class="bullet-list">
+          <li>Generare attenzione sul nuovo prodotto</li>
+          <li>Portare persone in target in fiera</li>
+          <li>Organizzare gli incontri per massimizzare il tempo</li>
+          <li>Raccogliere e gestire tutti i contatti in modo strutturato</li>
+          <li>Trasformare i contatti in opportunità commerciali concrete</li>
+        </ul>
 
-      <div class="card">
-        <div class="icon-wrapper">🎲</div>
-        <h3 style="font-size: 20px; margin-bottom: 12px;">Traffico Casuale</h3>
-        <p style="font-size: 16px;">Le persone che visitano lo stand non sono qualificate. Conversazioni dispersive, zero continuità commerciale.</p>
+        <div class="cta-box mt-32">
+          <span class="arrow">👉</span>
+          <p>La fiera diventa il punto centrale di un sistema che <strong style="color:var(--color-accent);">parte prima e continua dopo.</strong></p>
+        </div>
       </div>
 
-      <div class="card">
-        <div class="icon-wrapper">📋</div>
-        <h3 style="font-size: 20px; margin-bottom: 12px;">Contatti Disorganizzati</h3>
-        <p style="font-size: 16px;">Biglietti da visita raccolti, note sparse, follow-up dimenticati. La maggior parte dei contatti si perde nel caos post-fiera.</p>
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div class="card">
+          <div class="icon-wrapper">🎯</div>
+          <h3 style="font-size:17px; margin-bottom:8px;">Attenzione sul prodotto</h3>
+          <p style="font-size:14px;">Contenuti che creano curiosità e aspettativa prima ancora di arrivare in fiera.</p>
+        </div>
+        <div class="card">
+          <div class="icon-wrapper">🤖</div>
+          <h3 style="font-size:17px; margin-bottom:8px;">Sistema TAC AI al centro</h3>
+          <p style="font-size:14px;">Ogni contatto viene gestito, qualificato e lavorato automaticamente.</p>
+        </div>
+        <div class="card">
+          <div class="icon-wrapper">📈</div>
+          <h3 style="font-size:17px; margin-bottom:8px;">Risultati misurabili</h3>
+          <p style="font-size:14px;">Database strutturato pronto per la pipeline commerciale dal giorno dopo.</p>
+        </div>
       </div>
-
-      <div class="card">
-        <div class="icon-wrapper">⏳</div>
-        <h3 style="font-size: 20px; margin-bottom: 12px;">Stand nel Caos</h3>
-        <p style="font-size: 16px;">Senza appuntamenti pre-fissati, lo stand si riempie in modo imprevedibile. Poca attenzione, bassa conversione.</p>
-      </div>
-
-    </div>
-
-    <div class="highlight-box mt-48" style="display:flex; align-items:center; gap:24px;">
-      <span style="font-size: 36px; flex-shrink:0;">👉</span>
-      <p style="font-size: 18px; color: var(--color-text);">
-        Il risultato: <strong style="color:var(--color-accent);">visibilità senza opportunità.</strong> Tempo e budget investiti senza un ritorno misurabile.
-      </p>
     </div>
   </div>
 </section>
 
 <!-- ═══════════════════════════════════════════════ -->
-<!-- SLIDE 3 — LA STRATEGIA -->
+<!-- SLIDE 3 — COSA OTTENIAMO -->
 <!-- ═══════════════════════════════════════════════ -->
 <section class="slide" id="slide-3">
   <div class="deco-grid"></div>
   <div class="deco-glow" style="bottom: -100px; left: -100px; opacity: 0.5;"></div>
 
   <div class="slide-content">
-    <div class="tag">La Nostra Risposta</div>
-    <h2 style="margin-bottom: 16px;">La Fiera Come<br>Centro di un Sistema</h2>
-    <p style="margin-bottom: 48px; max-width: 650px;">Non un evento isolato, ma il punto centrale di un sistema che parte prima e continua dopo. Ogni contatto viene gestito, qualificato e trasformato in opportunità.</p>
+    <div class="tag">Cosa Otteniamo</div>
+    <h2 style="margin-bottom: 12px;">Attraverso Questa Struttura</h2>
+    <p style="margin-bottom: 36px; max-width: 620px;">Non solo visibilità: ogni elemento del sistema produce un risultato commerciale concreto e tracciabile.</p>
 
-    <div class="grid-3" style="gap: 24px; align-items: start;">
+    <div class="grid-3" style="gap: 20px;">
 
-      <div class="card" style="border-color: rgba(252,136,42,0.15);">
-        <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 16px;">01 — Pre-Fiera</div>
-        <h3 style="font-size: 18px; margin-bottom: 12px;">Creare Attesa e Portare Contatti</h3>
-        <p style="font-size: 15px; line-height: 1.6;">Contenuti hype, campagne lead, funnel WhatsApp con qualifica automatica. Le persone arrivano già interessate e prenotate.</p>
+      <div class="card">
+        <div class="icon-wrapper">🎯</div>
+        <h3 style="font-size:17px; margin-bottom:10px;">Persone già interessate</h3>
+        <p style="font-size:14px;">Le persone che arrivano in fiera sono già state qualificate e sono curiose del prodotto.</p>
       </div>
 
       <div class="card" style="border-color: rgba(252,136,42,0.3); background: var(--color-surface-2);">
-        <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 16px;">02 — In Fiera</div>
-        <h3 style="font-size: 18px; margin-bottom: 12px;">Appuntamenti, Non Caos</h3>
-        <p style="font-size: 15px; line-height: 1.6;">Stand organizzato a slot orari. Presentazione guidata, raccolta dati immediata su TAC AI, presenza operativa con riprese e contenuti live.</p>
-        <div style="margin-top: 16px; padding: 10px 16px; background: var(--color-accent-dim); border-radius: 8px; font-size: 13px; color: var(--color-accent); font-weight: 600;">⭐ Elemento chiave</div>
+        <div class="icon-wrapper">🗓️</div>
+        <h3 style="font-size:17px; margin-bottom:10px;">Stand con appuntamenti</h3>
+        <p style="font-size:14px;">Niente caos. Lo stand funziona a slot orari con conversazioni di qualità.</p>
+        <div style="margin-top:14px; padding:8px 14px; background:var(--color-accent-dim); border-radius:6px; font-size:12px; color:var(--color-accent); font-weight:700;">⭐ Elemento chiave</div>
       </div>
 
-      <div class="card" style="border-color: rgba(252,136,42,0.15);">
-        <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 16px;">03 — Post-Fiera</div>
-        <h3 style="font-size: 18px; margin-bottom: 12px;">Il Lavoro Continua</h3>
-        <p style="font-size: 15px; line-height: 1.6;">Follow-up automatico, messaggi personalizzati, nutrimento lead. Il database è già pronto e lavorabile dal giorno dopo.</p>
+      <div class="card">
+        <div class="icon-wrapper">💬</div>
+        <h3 style="font-size:17px; margin-bottom:10px;">Qualità delle conversazioni</h3>
+        <p style="font-size:14px;">Maggiore attenzione, presentazione strutturata, probabilità di conversione più alta.</p>
       </div>
 
-    </div>
+      <div class="card">
+        <div class="icon-wrapper">🗄️</div>
+        <h3 style="font-size:17px; margin-bottom:10px;">Database pronto e lavorabile</h3>
+        <p style="font-size:14px;">Contatti già organizzati e classificati. Pronti per la pipeline commerciale.</p>
+      </div>
 
-    <div class="highlight-box mt-32" style="display:flex; align-items:center; gap:20px;">
-      <span style="font-size: 28px; flex-shrink:0;">🤖</span>
-      <p style="font-size: 17px; color: var(--color-text);">
-        Al centro di tutto: <strong style="color:var(--color-accent);">TACI</strong> — il sistema AI che gestisce, qualifica e lavora ogni contatto in automatico.
-      </p>
+      <div class="card">
+        <div class="icon-wrapper">🔄</div>
+        <h3 style="font-size:17px; margin-bottom:10px;">Continuità commerciale</h3>
+        <p style="font-size:14px;">Possibilità di continuare a lavorare i lead anche dopo l'evento.</p>
+      </div>
+
+      <div class="card" style="display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; border-color:rgba(252,136,42,0.25); background:var(--color-accent-dim);">
+        <p style="font-size:16px; font-weight:700; color:var(--color-text); line-height:1.5;">
+          Non solo visibilità,<br>ma <span style="color:var(--color-accent);">opportunità concrete<br>e tracciate.</span>
+        </p>
+      </div>
+
     </div>
   </div>
 </section>
@@ -657,57 +579,59 @@
   <div class="deco-glow" style="top: -200px; right: -100px; opacity: 0.35;"></div>
 
   <div class="slide-content">
-    <div class="fase-badge">Fase 1 · Pre-Fiera</div>
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start;">
+    <div class="fase-badge">1 · Pre-Fiera</div>
+
+    <div class="grid-2" style="gap: 56px; align-items: start;">
 
       <div>
-        <h2 style="margin-bottom: 16px;">Generare Attesa.<br>Portare i Giusti.</h2>
-        <p style="margin-bottom: 40px;">Prima della fiera costruiamo interesse, qualifichiamo i contatti e organizziamo gli appuntamenti. Lo stand non si riempie per caso.</p>
+        <h2 style="margin-bottom: 12px; font-size: clamp(28px, 3vw, 44px);">Generare Attesa.<br>Portare i Giusti.</h2>
+        <p style="margin-bottom: 28px;">Prima della fiera costruiamo interesse, qualifichiamo i contatti e organizziamo gli appuntamenti. Lo stand non si riempie per caso.</p>
 
-        <div>
-          <div class="service-item" style="border-left-color: var(--color-accent); background: var(--color-accent-dim);">
-            <div style="font-weight: 700; color: var(--color-text); margin-bottom: 4px;">🎬 Contenuti Hype (8–12 video)</div>
-            <div style="font-size: 15px; color: var(--color-text-muted);">Teaser, reveal progressivo, countdown — per creare curiosità e aspettativa sul prodotto.</div>
-          </div>
-          <div class="service-item">
-            <div style="font-weight: 700; color: var(--color-text); margin-bottom: 4px;">📲 Contenuti Lead (4–6 contenuti)</div>
-            <div style="font-size: 15px; color: var(--color-text-muted);">Comunicazione mirata per rivenditori e clienti finali. Obiettivo: portare contatti in target.</div>
-          </div>
-          <div class="service-item">
-            <div style="font-weight: 700; color: var(--color-text); margin-bottom: 4px;">⚙️ Funnel WhatsApp + Form</div>
-            <div style="font-size: 15px; color: var(--color-text-muted);">Qualifica automatica e prenotazione slot. Ogni contatto entra direttamente in TAC AI.</div>
-          </div>
+        <div class="service-item" style="border-left-color: var(--color-accent); background: var(--color-accent-dim);">
+          <div style="font-weight:700; color:var(--color-text); margin-bottom:6px; font-size:15px;">🎬 Contenuti ATTENZIONE (HYPE)</div>
+          <ul class="bullet-list muted" style="font-size:13px;">
+            <li>8–12 contenuti video brevi</li>
+            <li>Teaser + reveal progressivo + countdown</li>
+            <li><em>Obiettivo: creare curiosità e aspettativa</em></li>
+          </ul>
+        </div>
+
+        <div class="service-item mt-8">
+          <div style="font-weight:700; color:var(--color-text); margin-bottom:6px; font-size:15px;">📲 Contenuti LEAD (CONVERSIONE)</div>
+          <ul class="bullet-list muted" style="font-size:13px;">
+            <li>4–6 contenuti orientati all'azione</li>
+            <li>Comunicazione distinta: rivenditori / cliente finale</li>
+            <li><em>Obiettivo: portare contatti in target</em></li>
+          </ul>
         </div>
       </div>
 
       <div>
-        <div class="card" style="margin-bottom: 24px;">
-          <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 16px;">🤖 Automazione TACI</div>
-          <div style="display: flex; flex-direction: column; gap: 12px;">
-            <div style="display:flex; align-items:center; gap:12px; font-size:16px;">
-              <span style="color:var(--color-accent); font-size:18px;">✓</span>
-              <span>Risposte automatiche su WhatsApp</span>
-            </div>
-            <div style="display:flex; align-items:center; gap:12px; font-size:16px;">
-              <span style="color:var(--color-accent); font-size:18px;">✓</span>
-              <span>Raccolta informazioni cliente</span>
-            </div>
-            <div style="display:flex; align-items:center; gap:12px; font-size:16px;">
-              <span style="color:var(--color-accent); font-size:18px;">✓</span>
-              <span>Inserimento automatico nel database</span>
-            </div>
-            <div style="display:flex; align-items:center; gap:12px; font-size:16px;">
-              <span style="color:var(--color-accent); font-size:18px;">✓</span>
-              <span>Reminder appuntamenti personalizzati</span>
-            </div>
+        <div class="card" style="margin-bottom:16px; border-color:rgba(252,136,42,0.2);">
+          <div style="font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--color-accent); margin-bottom:14px;">⚙️ Sistema Prenotazione + TAC AI</div>
+          <ul class="bullet-list" style="font-size:14px; gap:8px;">
+            <li>Struttura funnel (WhatsApp / form)</li>
+            <li>Qualifica automatica dei contatti</li>
+            <li>Prenotazione slot in fiera</li>
+          </ul>
+          <div class="cta-box mt-16" style="padding:12px 16px;">
+            <span style="font-size:16px;">👉</span>
+            <p style="font-size:13px;">Ogni contatto viene inserito in <strong style="color:var(--color-accent);">TAC AI</strong></p>
           </div>
         </div>
 
-        <div class="highlight-box">
-          <p style="font-size: 16px; color: var(--color-text);">
-            Il contatto non si perde.<br>
-            <strong style="color:var(--color-accent);">Viene già lavorato prima della fiera.</strong>
-          </p>
+        <div class="card">
+          <div style="font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--color-accent); margin-bottom:14px;">🤖 Automazione con TACI</div>
+          <ul class="bullet-list" style="font-size:14px; gap:8px;">
+            <li>Risposte automatiche su WhatsApp</li>
+            <li>Raccolta informazioni cliente</li>
+            <li>Inserimento nel database</li>
+            <li>Reminder appuntamenti</li>
+          </ul>
+          <div class="cta-box mt-16" style="padding:12px 16px;">
+            <span style="font-size:16px;">👉</span>
+            <p style="font-size:13px;">Il contatto non si perde e viene già <strong style="color:var(--color-accent);">lavorato prima della fiera</strong></p>
+          </div>
         </div>
       </div>
 
@@ -716,82 +640,73 @@
 </section>
 
 <!-- ═══════════════════════════════════════════════ -->
-<!-- SLIDE 5 — IN FIERA -->
+<!-- SLIDE 5 — ORGANIZZAZIONE FIERA -->
 <!-- ═══════════════════════════════════════════════ -->
 <section class="slide" id="slide-5">
   <div class="deco-grid"></div>
   <div class="deco-glow" style="bottom: -150px; right: -150px; opacity: 0.4;"></div>
 
   <div class="slide-content">
-    <div class="fase-badge">Fase 2 · In Fiera</div>
+    <div class="fase-badge">2 · Organizzazione Fiera — Elemento Chiave</div>
 
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start;">
+    <div class="grid-2" style="gap: 56px; align-items: start;">
 
       <div>
-        <h2 style="margin-bottom: 16px;">In Fiera<br>Non Si Improvvisa.</h2>
-        <p style="margin-bottom: 32px;">Lo stand funziona come un sistema organizzato. Ogni slot è un'opportunità gestita, non lasciata al caso.</p>
+        <h2 style="margin-bottom: 12px; font-size: clamp(28px, 3vw, 44px);">In Fiera<br>NON Si Improvvisa.</h2>
+        <p style="margin-bottom: 28px;">Lo stand funziona come un sistema organizzato. Ogni slot è un'opportunità gestita, non lasciata al caso.</p>
 
-        <div class="card" style="margin-bottom: 24px; border-color: rgba(252,136,42,0.25);">
-          <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 16px;">🕐 Gestione Appuntamenti a Slot</div>
-          <div style="display: flex; flex-direction: column; gap: 10px;">
-            <div style="display:flex; align-items:center; gap:12px; font-size:16px;">
-              <span style="color:var(--color-accent);">→</span> <span>Suddivisione in fasce orarie</span>
-            </div>
-            <div style="display:flex; align-items:center; gap:12px; font-size:16px;">
-              <span style="color:var(--color-accent);">→</span> <span>Gruppi organizzati per tipologia</span>
-            </div>
-            <div style="display:flex; align-items:center; gap:12px; font-size:16px;">
-              <span style="color:var(--color-accent);">→</span> <span>Presentazione guidata del prodotto</span>
-            </div>
-          </div>
+        <div class="card" style="border-color:rgba(252,136,42,0.3); margin-bottom:16px;">
+          <div style="font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--color-accent); margin-bottom:14px;">🕐 Gestione Appuntamenti a Slot</div>
+          <ul class="bullet-list" style="font-size:14px; gap:8px;">
+            <li>Suddivisione in fasce orarie</li>
+            <li>Gruppi organizzati</li>
+            <li>Presentazione guidata del prodotto</li>
+          </ul>
         </div>
 
-        <div class="card">
-          <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 16px;">👥 Presenza Operativa (2 persone)</div>
-          <div style="display: flex; flex-direction: column; gap: 10px;">
-            <div style="display:flex; align-items:center; gap:12px; font-size:16px;">
-              <span style="color:var(--color-accent);">→</span> <span>Riprese stand e prodotto</span>
-            </div>
-            <div style="display:flex; align-items:center; gap:12px; font-size:16px;">
-              <span style="color:var(--color-accent);">→</span> <span>Interviste a caldo e testimonianze</span>
-            </div>
-            <div style="display:flex; align-items:center; gap:12px; font-size:16px;">
-              <span style="color:var(--color-accent);">→</span> <span>Contenuti live per i social</span>
-            </div>
+        <div class="cta-box">
+          <span class="arrow">👉</span>
+          <div>
+            <p style="font-size:13px; margin-bottom:6px;">Questo permette di:</p>
+            <ul class="bullet-list" style="font-size:13px; gap:4px;">
+              <li>dare attenzione reale</li>
+              <li>evitare caos allo stand</li>
+              <li>aumentare probabilità di conversione</li>
+            </ul>
           </div>
         </div>
       </div>
 
       <div>
-        <div style="background: var(--color-surface-2); border: 1px solid rgba(252,136,42,0.3); border-radius: 16px; padding: 40px; margin-bottom: 24px;">
-          <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 24px;">📲 Gestione Contatti Real-Time</div>
-          <div style="display: flex; flex-direction: column; gap: 16px;">
-            <div style="display:flex; align-items:flex-start; gap:16px;">
-              <div class="icon-wrapper" style="width:40px;height:40px;flex-shrink:0;border-radius:10px;font-size:18px;">🤖</div>
+        <div style="background: var(--color-surface-2); border: 1px solid rgba(252,136,42,0.25); border-radius:14px; padding:32px; margin-bottom:16px;">
+          <div style="font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--color-accent); margin-bottom:20px;">🎯 In Fiera Si Lavora Così</div>
+          <div style="display:flex; flex-direction:column; gap:14px;">
+            <div style="display:flex; align-items:center; gap:14px; padding:12px 16px; background:var(--color-accent-dim); border-radius:8px;">
+              <span style="font-size:20px;">📌</span>
               <div>
-                <div style="font-weight:600;color:var(--color-text);margin-bottom:4px;font-size:16px;">Inserimento istantaneo in TAC AI</div>
-                <div style="font-size:14px;color:var(--color-text-muted);">Ogni contatto viene classificato e inserito nel database in tempo reale.</div>
+                <div style="font-weight:700; font-size:15px; color:var(--color-text);">Persone già prenotate</div>
+                <div style="font-size:13px; color:var(--color-text-muted);">Nessun visitatore casuale, solo appuntamenti confermati</div>
               </div>
             </div>
-            <div style="display:flex; align-items:flex-start; gap:16px;">
-              <div class="icon-wrapper" style="width:40px;height:40px;flex-shrink:0;border-radius:10px;font-size:18px;">🏷️</div>
+            <div style="display:flex; align-items:center; gap:14px; padding:12px 16px; background:var(--color-surface); border-radius:8px; border:1px solid var(--color-border);">
+              <span style="font-size:20px;">📋</span>
               <div>
-                <div style="font-weight:600;color:var(--color-text);margin-bottom:4px;font-size:16px;">Classificazione immediata</div>
-                <div style="font-size:14px;color:var(--color-text-muted);">Rivenditore, cliente finale, partner — categorizzato sul momento.</div>
+                <div style="font-weight:700; font-size:15px; color:var(--color-text);">Presentazione strutturata</div>
+                <div style="font-size:13px; color:var(--color-text-muted);">Script guidato per massimizzare ogni conversazione</div>
               </div>
             </div>
-            <div style="display:flex; align-items:flex-start; gap:16px;">
-              <div class="icon-wrapper" style="width:40px;height:40px;flex-shrink:0;border-radius:10px;font-size:18px;">🚀</div>
+            <div style="display:flex; align-items:center; gap:14px; padding:12px 16px; background:var(--color-surface); border-radius:8px; border:1px solid var(--color-border);">
+              <span style="font-size:20px;">🤖</span>
               <div>
-                <div style="font-weight:600;color:var(--color-text);margin-bottom:4px;font-size:16px;">Avvio follow-up automatico</div>
-                <div style="font-size:14px;color:var(--color-text-muted);">Il processo commerciale parte già durante la fiera.</div>
+                <div style="font-weight:700; font-size:15px; color:var(--color-text);">Raccolta dati → subito su TAC AI</div>
+                <div style="font-size:13px; color:var(--color-text-muted);">Ogni contatto classificato e inserito in tempo reale</div>
               </div>
             </div>
           </div>
         </div>
 
         <div class="highlight-box">
-          <p style="font-size: 16px; font-weight: 600; color: var(--color-text);">
+          <p style="font-size:15px; font-weight:700; color:var(--color-text);">
             Nessun contatto viene perso. <span style="color:var(--color-accent);">Nessuno.</span>
           </p>
         </div>
@@ -802,50 +717,64 @@
 </section>
 
 <!-- ═══════════════════════════════════════════════ -->
-<!-- SLIDE 6 — VIDEO SPOT + POST FIERA -->
+<!-- SLIDE 6 — VIDEO SPOT + ATTIVITÀ IN FIERA -->
 <!-- ═══════════════════════════════════════════════ -->
 <section class="slide" id="slide-6">
   <div class="deco-grid"></div>
   <div class="deco-glow" style="top: -100px; left: -100px; opacity: 0.4;"></div>
 
   <div class="slide-content">
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start;">
+
+    <div class="grid-2" style="gap: 56px; align-items: start;">
 
       <div>
-        <div class="fase-badge">Fase 3 · Video Spot</div>
-        <h2 style="font-size: clamp(32px, 3.5vw, 48px); margin-bottom: 16px;">Il Prodotto<br>in un Video Principale</h2>
-        <p style="margin-bottom: 32px;">Un asset che dura nel tempo, riutilizzabile su tutti i canali.</p>
+        <div class="fase-badge">3 · Video Spot Principale</div>
+        <h2 style="font-size: clamp(26px, 2.8vw, 40px); margin-bottom: 12px;">Il Prodotto<br>in un Video Principale</h2>
+        <p style="margin-bottom: 24px; font-size:14px;">Un asset che dura nel tempo, riutilizzabile su tutti i canali.</p>
 
-        <div class="card" style="margin-bottom: 16px;">
-          <div class="icon-wrapper" style="margin-bottom:16px;">🎬</div>
-          <h3 style="font-size:18px;margin-bottom:8px;">Video Cinematico Principale</h3>
-          <p style="font-size:15px;">Per schermi in fiera, campagne adv, social media. Il cuore della comunicazione del prodotto.</p>
+        <div class="card" style="margin-bottom:14px;">
+          <div class="icon-wrapper" style="margin-bottom:12px;">🎬</div>
+          <h3 style="font-size:16px; margin-bottom:6px;">Produzione</h3>
+          <ul class="bullet-list muted" style="font-size:13px; gap:6px;">
+            <li>1 video cinematico principale</li>
+            <li>Utilizzo: schermi in fiera, campagne, social</li>
+          </ul>
         </div>
 
         <div class="card">
-          <div class="icon-wrapper" style="margin-bottom:16px;">✂️</div>
-          <h3 style="font-size:18px;margin-bottom:8px;">5–8 Clip Derivate</h3>
-          <p style="font-size:15px;">Contenuti ottimizzati per ogni canale social e per le campagne ads.</p>
+          <div class="icon-wrapper" style="margin-bottom:12px;">✂️</div>
+          <h3 style="font-size:16px; margin-bottom:6px;">Contenuti derivati</h3>
+          <ul class="bullet-list muted" style="font-size:13px; gap:6px;">
+            <li>5–8 clip per social e ads</li>
+          </ul>
         </div>
       </div>
 
       <div>
-        <div class="fase-badge" style="background: rgba(252,136,42,0.1); border-color: rgba(252,136,42,0.2);">Fase 4 · Post-Fiera</div>
-        <h2 style="font-size: clamp(32px, 3.5vw, 48px); margin-bottom: 16px;">Il Lavoro<br>Continua Dopo</h2>
-        <p style="margin-bottom: 32px;">La fiera finisce. Il sistema no.</p>
+        <div class="fase-badge" style="background:rgba(252,136,42,0.08); border-color:rgba(252,136,42,0.2);">4 · Attività in Fiera</div>
+        <h2 style="font-size: clamp(26px, 2.8vw, 40px); margin-bottom: 12px;">Presenza Operativa<br>e Gestione Contatti</h2>
+        <p style="margin-bottom: 24px; font-size:14px;">Due persone operative per massimizzare ogni momento in fiera.</p>
 
-        <div style="display: flex; flex-direction: column; gap: 12px;">
-          <div class="service-item" style="border-left-color: var(--color-accent); background: var(--color-accent-dim);">
-            <div style="font-weight:700;color:var(--color-text);margin-bottom:4px;">📲 Contenuti post-evento</div>
-            <div style="font-size:14px;color:var(--color-text-muted);">Recap, testimonianze, contenuti commerciali — 10–15 pezzi.</div>
-          </div>
-          <div class="service-item">
-            <div style="font-weight:700;color:var(--color-text);margin-bottom:4px;">🤖 Follow-up automatico TACI</div>
-            <div style="font-size:14px;color:var(--color-text-muted);">Messaggi personalizzati, nutrimento lead, supporto alla fissazione appuntamenti.</div>
-          </div>
-          <div class="service-item">
-            <div style="font-weight:700;color:var(--color-text);margin-bottom:4px;">📊 Database attivo e lavorabile</div>
-            <div style="font-size:14px;color:var(--color-text-muted);">Tutti i contatti già organizzati, classificati, pronti per la pipeline commerciale.</div>
+        <div class="card" style="margin-bottom:14px;">
+          <div style="font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--color-accent); margin-bottom:14px;">👥 Presenza Operativa (2 persone)</div>
+          <ul class="bullet-list" style="font-size:13px; gap:6px;">
+            <li>Riprese stand</li>
+            <li>Interviste a caldo</li>
+            <li>Raccolta testimonianze</li>
+            <li>Contenuti live</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div style="font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--color-accent); margin-bottom:14px;">📲 Gestione Contatti</div>
+          <ul class="bullet-list" style="font-size:13px; gap:6px;">
+            <li>Tutti i contatti inseriti in TAC AI</li>
+            <li>Classificazione immediata</li>
+            <li>Avvio follow-up automatico</li>
+          </ul>
+          <div class="cta-box mt-16" style="padding:10px 14px;">
+            <span>👉</span>
+            <p style="font-size:13px;"><strong style="color:var(--color-accent);">Nessun contatto viene perso</strong></p>
           </div>
         </div>
       </div>
@@ -855,73 +784,57 @@
 </section>
 
 <!-- ═══════════════════════════════════════════════ -->
-<!-- SLIDE 7 — DELIVERABLE + CONFRONTO -->
+<!-- SLIDE 7 — POST-FIERA + DELIVERABLE -->
 <!-- ═══════════════════════════════════════════════ -->
 <section class="slide" id="slide-7">
   <div class="deco-grid"></div>
   <div class="deco-glow" style="bottom: -200px; right: -200px; opacity: 0.3;"></div>
 
   <div class="slide-content">
-    <div class="tag">Cosa Include il Progetto</div>
-    <h2 style="margin-bottom: 40px;">Deliverable Complessivi</h2>
 
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;">
+    <div class="grid-2" style="gap: 56px; align-items: start;">
 
       <div>
-        <div class="del-item">
-          <div class="check">🎬</div>
-          <span><strong>8–12</strong> contenuti hype (video brevi, teaser, countdown)</span>
+        <div class="fase-badge">5 · Post-Fiera</div>
+        <h2 style="font-size: clamp(26px, 2.8vw, 40px); margin-bottom: 12px;">Il Lavoro<br>Continua Dopo</h2>
+        <p style="margin-bottom: 24px; font-size:14px;">La fiera finisce. Il sistema no.</p>
+
+        <div class="service-item" style="border-left-color:var(--color-accent); background:var(--color-accent-dim);">
+          <div style="font-weight:700; color:var(--color-text); margin-bottom:6px; font-size:14px;">📲 Contenuti</div>
+          <ul class="bullet-list muted" style="font-size:13px; gap:4px;">
+            <li>recap evento</li>
+            <li>testimonianze</li>
+            <li>contenuti commerciali</li>
+          </ul>
         </div>
-        <div class="del-item">
-          <div class="check">📲</div>
-          <span><strong>4–6</strong> contenuti lead (rivenditori + cliente finale)</span>
+
+        <div class="service-item mt-8">
+          <div style="font-weight:700; color:var(--color-text); margin-bottom:6px; font-size:14px;">🤖 Lavorazione Contatti (TAC AI)</div>
+          <ul class="bullet-list muted" style="font-size:13px; gap:4px;">
+            <li>follow-up automatico</li>
+            <li>messaggi personalizzati</li>
+            <li>nutrimento lead</li>
+            <li>supporto alla fissazione appuntamenti</li>
+          </ul>
         </div>
-        <div class="del-item">
-          <div class="check">🎥</div>
-          <span><strong>1</strong> video spot cinematico principale</span>
-        </div>
-        <div class="del-item">
-          <div class="check">✂️</div>
-          <span><strong>5–8</strong> clip derivate per social e ads</span>
-        </div>
-        <div class="del-item">
-          <div class="check">📸</div>
-          <span><strong>10–15</strong> contenuti dalla fiera (riprese, interviste, live)</span>
-        </div>
-        <div class="del-item">
-          <div class="check">🤖</div>
-          <span>Sistema <strong>TAC AI</strong> attivo (qualifica, follow-up, database)</span>
-        </div>
-        <div class="del-item">
-          <div class="check">⚙️</div>
-          <span>Struttura funnel + slot prenotazione appuntamenti</span>
+
+        <div class="cta-box mt-20">
+          <span class="arrow">👉</span>
+          <p style="font-size:14px;">Il lavoro continua anche <strong style="color:var(--color-accent);">dopo la fiera</strong></p>
         </div>
       </div>
 
       <div>
-        <div class="vs-grid" style="grid-template-columns: 1fr 1fr; gap: 16px;">
-          <div class="vs-box bad">
-            <div class="vs-label bad">Senza Struttura</div>
-            <div class="vs-item"><span class="icon">✗</span> Persone casuali</div>
-            <div class="vs-item"><span class="icon">✗</span> Contatti disordinati</div>
-            <div class="vs-item"><span class="icon">✗</span> Poca conversione</div>
-            <div class="vs-item"><span class="icon">✗</span> Nessuna continuità</div>
-          </div>
-          <div class="vs-box good">
-            <div class="vs-label good">Con TAC Agency</div>
-            <div class="vs-item" style="color:var(--color-text);"><span class="icon" style="color:var(--color-accent);">✓</span> Traffico qualificato</div>
-            <div class="vs-item" style="color:var(--color-text);"><span class="icon" style="color:var(--color-accent);">✓</span> Appuntamenti organizzati</div>
-            <div class="vs-item" style="color:var(--color-text);"><span class="icon" style="color:var(--color-accent);">✓</span> Database pronto</div>
-            <div class="vs-item" style="color:var(--color-text);"><span class="icon" style="color:var(--color-accent);">✓</span> Continuità commerciale</div>
-          </div>
-        </div>
+        <div class="tag" style="margin-bottom:16px;">Deliverable Complessivi</div>
+        <h2 style="font-size: clamp(24px, 2.5vw, 36px); margin-bottom:20px;">Cosa Include<br>il Progetto</h2>
 
-        <div class="highlight-box mt-24">
-          <p style="font-size: 16px; color: var(--color-text);">
-            Non solo visibilità.<br>
-            <strong style="color:var(--color-accent);">Opportunità concrete e tracciate.</strong>
-          </p>
-        </div>
+        <div class="del-item"><div class="del-check">🎬</div><span><strong>8–12</strong> contenuti hype (video brevi, teaser, countdown)</span></div>
+        <div class="del-item"><div class="del-check">📲</div><span><strong>4–6</strong> contenuti lead (rivenditori + cliente finale)</span></div>
+        <div class="del-item"><div class="del-check">🎥</div><span><strong>1</strong> video spot cinematico principale</span></div>
+        <div class="del-item"><div class="del-check">✂️</div><span><strong>5–8</strong> clip derivate per social e ads</span></div>
+        <div class="del-item"><div class="del-check">📸</div><span><strong>10–15</strong> contenuti dalla fiera (riprese, interviste, live)</span></div>
+        <div class="del-item"><div class="del-check">🤖</div><span>Sistema <strong>TAC AI</strong> attivo (qualifica, follow-up, database)</span></div>
+        <div class="del-item"><div class="del-check">⚙️</div><span>Struttura funnel + slot prenotazione appuntamenti</span></div>
       </div>
 
     </div>
@@ -929,7 +842,7 @@
 </section>
 
 <!-- ═══════════════════════════════════════════════ -->
-<!-- SLIDE 8 — INVESTIMENTO + CTA -->
+<!-- SLIDE 8 — LOGICA DEL PROGETTO + INVESTIMENTO -->
 <!-- ═══════════════════════════════════════════════ -->
 <section class="slide" id="slide-8">
   <div class="deco-grid"></div>
@@ -943,38 +856,42 @@
       <span class="logo-text" style="display:none;">TAC</span>
     </div>
 
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;">
+    <div class="grid-2" style="gap: 56px; align-items: center;">
 
       <div>
-        <div class="tag">Investimento</div>
-        <h2 style="font-size: clamp(36px, 4vw, 52px); margin-bottom: 24px;">Progetto Completo<br>Fiera × Eikona</h2>
-        <p style="font-size: 18px;">Tutto incluso: strategia, contenuti, sistema AI, video spot, presenza in fiera e lavorazione post-evento.</p>
+        <div class="tag">Logica del Progetto</div>
+        <h2 style="font-size: clamp(26px, 2.8vw, 40px); margin-bottom: 24px;">Senza Struttura vs.<br>Con TAC Agency</h2>
+
+        <div class="grid-2" style="gap:14px;">
+          <div class="vs-box bad">
+            <div class="vs-label bad">Senza struttura</div>
+            <div class="vs-item"><span style="color:rgba(255,80,80,0.6); font-size:14px; flex-shrink:0;">✗</span> Persone casuali</div>
+            <div class="vs-item"><span style="color:rgba(255,80,80,0.6); font-size:14px; flex-shrink:0;">✗</span> Contatti disordinati</div>
+            <div class="vs-item"><span style="color:rgba(255,80,80,0.6); font-size:14px; flex-shrink:0;">✗</span> Poca conversione</div>
+          </div>
+          <div class="vs-box good">
+            <div class="vs-label good">Con TAC Agency</div>
+            <div class="vs-item" style="color:var(--color-text);"><span style="color:var(--color-accent); font-size:14px; flex-shrink:0;">✓</span> Traffico qualificato</div>
+            <div class="vs-item" style="color:var(--color-text);"><span style="color:var(--color-accent); font-size:14px; flex-shrink:0;">✓</span> Appuntamenti organizzati</div>
+            <div class="vs-item" style="color:var(--color-text);"><span style="color:var(--color-accent); font-size:14px; flex-shrink:0;">✓</span> Database pronto</div>
+            <div class="vs-item" style="color:var(--color-text);"><span style="color:var(--color-accent); font-size:14px; flex-shrink:0;">✓</span> Continuità commerciale</div>
+          </div>
+        </div>
       </div>
 
       <div>
         <div class="price-box">
-          <div style="font-size: 14px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 16px;">Progetto completo</div>
+          <div style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--color-text-muted); margin-bottom:12px;">💰 Investimento — Progetto Completo</div>
           <div class="price-number">€8.500</div>
-          <div class="divider mt-32"></div>
-          <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 24px;">
-            <div style="display:flex;align-items:center;gap:12px;font-size:15px;color:var(--color-text-muted);">
-              <span style="color:var(--color-accent);">✓</span> Strategia e consulenza
-            </div>
-            <div style="display:flex;align-items:center;gap:12px;font-size:15px;color:var(--color-text-muted);">
-              <span style="color:var(--color-accent);">✓</span> Contenuti pre-fiera (hype + lead)
-            </div>
-            <div style="display:flex;align-items:center;gap:12px;font-size:15px;color:var(--color-text-muted);">
-              <span style="color:var(--color-accent);">✓</span> Video spot principale + clip derivate
-            </div>
-            <div style="display:flex;align-items:center;gap:12px;font-size:15px;color:var(--color-text-muted);">
-              <span style="color:var(--color-accent);">✓</span> Sistema TAC AI + funnel prenotazioni
-            </div>
-            <div style="display:flex;align-items:center;gap:12px;font-size:15px;color:var(--color-text-muted);">
-              <span style="color:var(--color-accent);">✓</span> Presenza operativa in fiera (2 persone)
-            </div>
-            <div style="display:flex;align-items:center;gap:12px;font-size:15px;color:var(--color-text-muted);">
-              <span style="color:var(--color-accent);">✓</span> Contenuti e follow-up post-evento
-            </div>
+          <div class="divider mt-20"></div>
+          <p style="font-size:13px; margin-bottom:16px;">Include:</p>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--color-text-muted);"><span style="color:var(--color-accent);">✓</span> Strategia</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--color-text-muted);"><span style="color:var(--color-accent);">✓</span> Contenuti pre-fiera</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--color-text-muted);"><span style="color:var(--color-accent);">✓</span> Video spot</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--color-text-muted);"><span style="color:var(--color-accent);">✓</span> Sistema TAC AI + funnel</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--color-text-muted);"><span style="color:var(--color-accent);">✓</span> Presenza in fiera</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--color-text-muted);"><span style="color:var(--color-accent);">✓</span> Contenuti post</div>
           </div>
         </div>
       </div>
@@ -982,15 +899,15 @@
     </div>
 
     <div style="display:flex; justify-content:space-between; align-items:flex-end;">
-      <p class="text-xs text-muted">TAC Agency — Consulenza Strategica AI</p>
-      <p class="text-xs text-muted" style="color: var(--color-accent);">tacagency.it</p>
+      <p style="font-size:12px; color:var(--color-text-muted);">TAC Agency — Consulenza Strategica AI</p>
+      <p style="font-size:12px; color:var(--color-accent);">tacagency.it</p>
     </div>
 
   </div>
 </section>
 
 <!-- ═══════════════════════════════════════════════ -->
-<!-- BARRA NAVIGAZIONE -->
+<!-- NAVIGAZIONE -->
 <!-- ═══════════════════════════════════════════════ -->
 <div class="progress-track">
   <div class="progress-bar" style="width: 12.5%;"></div>
@@ -1000,9 +917,6 @@
   <span class="slide-counter">1 / 8</span>
 </nav>
 
-<!-- ═══════════════════════════════════════════════ -->
-<!-- JAVASCRIPT -->
-<!-- ═══════════════════════════════════════════════ -->
 <script>
   let cur = 0;
   const slides = document.querySelectorAll('.slide');
@@ -1021,7 +935,7 @@
     if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   goTo(cur - 1);
   });
 
-  // Touch/swipe support
+  // Touch / swipe
   let touchStartX = 0;
   document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
   document.addEventListener('touchend', e => {
